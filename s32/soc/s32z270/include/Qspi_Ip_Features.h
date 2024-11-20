@@ -26,7 +26,7 @@ extern "C"{
 * 2) needed interfaces from external units
 * 3) internal and external interfaces from this unit
 ==================================================================================================*/
-#include "S32Z270_QUADSPI.h"
+#include "S32Z2_QUADSPI.h"
 
 /*==================================================================================================
 *                              SOURCE FILE VERSION INFORMATION
