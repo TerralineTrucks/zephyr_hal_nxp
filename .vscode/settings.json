@@ -1,0 +1,5 @@
+{
+    "files.associations": {
+        "qspi_ip_controller.h": "c"
+    }
+}
