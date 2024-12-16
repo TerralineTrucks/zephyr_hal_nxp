@@ -20,3 +20,18 @@ zephyr_library_sources_ifdef(CONFIG_CLOCK_CONTROL_NXP_S32
   src/Clock_Ip_Selector.c
   src/Clock_Ip_Specific.c
 )
+
+
+# zephyr_library_sources(
+#   src/Power_Ip.c
+#   src/Power_Ip_CortexM33.c
+#   src/Power_Ip_GPR.c
+#   src/Power_Ip_MC_ME.c
+#   src/Power_Ip_MC_RGM_Irq.c
+#   src/Power_Ip_MC_RGM.c
+#   src/Power_Ip_MSCM.c
+#   src/Power_Ip_PMC.c
+#   src/Power_Ip_Private.c
+#   src/Power_Ip_RTU_GPR.c
+#   src/Power_Ip_RTU_NIC.c
+# )
