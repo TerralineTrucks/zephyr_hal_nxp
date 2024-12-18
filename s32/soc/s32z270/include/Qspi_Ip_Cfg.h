@@ -89,7 +89,7 @@ extern "C" {
 #define QSPI_IP_CMD_COMPLETE_TIMEOUT (20000000U)
 
 /* After the FRAD checks pass we wait for QSPI to become idle */
-#define QSPI_IP_QSPI_IDLE_TIMEOUT (2000000U)
+#define QSPI_IP_QSPI_IDLE_TIMEOUT (20000000U)
 
 /* Timeout for external flash software reset completion */
 #define QSPI_IP_RESET_TIMEOUT (2000000U)
