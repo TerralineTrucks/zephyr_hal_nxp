@@ -1649,15 +1649,18 @@ static inline void Qspi_Ip_InvalidateTxBuf(uint32 instance)
     QuadSPI_Type *baseAddr = Qspi_Ip_BaseAddress[instance];
     volatile uint32 u32CurrentTicks;
 
-    /* Start TX FIFO reset */
-    Qspi_Ip_ClearTxBuf(baseAddr);
+    if (Qspi_Ip_GetTxBufFill(baseAddr) != 0U) {
+        /* Start TX FIFO reset */
+        Qspi_Ip_ClearTxBuf(baseAddr);
 
-    /* Prepare timeout counter */
-    u32CurrentTicks = QSPI_IP_TX_BUFFER_RESET_DELAY;
-    /* Insert delay to ensure TX FIFO reset is complete */
-    while (u32CurrentTicks > 0U)
-    {
-        u32CurrentTicks--;
+        /* Prepare timeout counter */
+        u32CurrentTicks = QSPI_IP_TX_BUFFER_RESET_DELAY;
+        /* Insert delay to ensure TX FIFO reset is complete */
+        while (u32CurrentTicks > 0U)
+        {
+            u32CurrentTicks--;
+        }
+        MCAL_DATA_SYNC_BARRIER();
     }
 }
 
@@ -1715,23 +1718,23 @@ Qspi_Ip_StatusType Qspi_Ip_IpWrite(uint32 instance,
     /* Reset AHB buffers to force re-read from memory after write operation */
     Qspi_Ip_AhbFlush(baseAddr);
 
-    /* Ensure there is no garbage in Tx FIFO */
-    Qspi_Ip_InvalidateTxBuf(instance);
-
     padding = Qspi_Ip_MemoryPadding[instance];
     TotalSize = (uint16)(size + (padding >> 4U) + (padding & 0x0FU));
     Qspi_Ip_MemoryPadding[instance] = 0U;  /* Clear padding */
 
 #if (FEATURE_QSPI_HAS_SFP == 1)
 
+    Qspi_Ip_NewIpsTransaction(baseAddr, addr, TotalSize, SeqId);
+
     /* Setup water mark according to the transfer size to avoid underrun issue. */
     Qspi_Ip_SetTxWatermark( baseAddr, (uint8)( (FEATURE_QSPI_TX_BUF_SIZE / 4U) - ((TotalSize / 4U) - 1U) ) );
-
-    Qspi_Ip_NewIpsTransaction(baseAddr, addr, TotalSize, SeqId);
 
     /* 01 - TBDR lock is open. QuadSPI considers IPS transfer. Master counter is started. */
     if (STATUS_QSPI_IP_SUCCESS == Qspi_Ip_Sfp_WaitFsmState(baseAddr, 1U))
     {
+        /* Ensure there is no garbage in Tx FIFO */
+        Qspi_Ip_InvalidateTxBuf(instance);
+
         /* Fill Tx buffer */
         Qspi_Ip_FillTxBuf(baseAddr, data, size, padding);
 
