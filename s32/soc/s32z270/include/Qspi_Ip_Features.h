@@ -97,10 +97,7 @@ extern "C"{
 #define FEATURE_QSPI_DLL_LOOPCONTROL                  1
 
 /*! @brief Supports secure flash protection feature */
-#define FEATURE_QSPI_HAS_SFP                          0
-
-/*! @brief Needs S32K3 chip-specific initialization (SOCCR) */
-#define FEATURE_QSPI_CHIP_OPTIONS_S32K3
+#define FEATURE_QSPI_HAS_SFP                          1
 
 /*! @brief The maximum size of manufacturer & device ID that flash memories can have */
 #define FEATURE_QSPI_FLASH_MDID_SIZE                  10U
