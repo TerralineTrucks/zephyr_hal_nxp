@@ -47,7 +47,9 @@ extern "C"{
 /* QuadSPI module features */
 
 /*! @brief First address of the serial flash device on the AHB bus for QuadSPI instances */
-#define FEATURE_QSPI_AMBA_BASE                        {0x68000000UL}
+#define FEATURE_QSPI0_AMBA_BASE                       0x00000000UL
+#define FEATURE_QSPI1_AMBA_BASE                       0x10000000UL
+
 /*! @brief Size of AHB buffer. */
 #define FEATURE_QSPI_AHB_BUF_SIZE                     256U
 /*! @brief Size of Tx FIFO. */
@@ -104,7 +106,7 @@ extern "C"{
 #define FEATURE_QSPI_FLASH_MDID_SIZE                  10U
 
 /*! @brief AHB base pointers initializer for all QSPI units */
-#define QuadSPI_AHB_PTRS      FEATURE_QSPI_AMBA_BASE
+#define QuadSPI_AHB_PTRS        {FEATURE_QSPI0_AMBA_BASE, FEATURE_QSPI1_AMBA_BASE}
 
 
 #ifdef __cplusplus
