@@ -48,9 +48,9 @@ extern "C"{
 ==================================================================================================*/
 
 
-#define QSPI_IP_SFP_ENABLE_GLOBAL                    (STD_OFF)
-#define QSPI_IP_SFP_ENABLE_MDAD                      (STD_OFF)
-#define QSPI_IP_SFP_ENABLE_FRAD                      (STD_OFF)
+#define QSPI_IP_SFP_ENABLE_GLOBAL                    (STD_ON)
+#define QSPI_IP_SFP_ENABLE_MDAD                      (STD_ON)
+#define QSPI_IP_SFP_ENABLE_FRAD                      (STD_ON)
 
 
 #ifdef __cplusplus

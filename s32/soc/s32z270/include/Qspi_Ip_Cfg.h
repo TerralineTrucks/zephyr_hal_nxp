@@ -80,10 +80,10 @@ extern "C"{
 #define QSPI_IP_DLL_LOCK_TIMEOUT          (2147483647U)
 
 /* Timeout for QSPI command completion */
-#define QSPI_IP_CMD_COMPLETE_TIMEOUT      (2000000U)
+#define QSPI_IP_CMD_COMPLETE_TIMEOUT      (20000000U)
 
 /* After the FRAD checks pass we wait for QSPI to become idle */
-#define QSPI_IP_QSPI_IDLE_TIMEOUT         (0U)
+#define QSPI_IP_QSPI_IDLE_TIMEOUT         (20000000U)
 
 /* Timeout for external flash software reset completion */
 #define QSPI_IP_RESET_TIMEOUT             (2000000U)
@@ -95,7 +95,7 @@ extern "C"{
 #define QSPI_IP_READ_TIMEOUT              (2147483647U)
 
 /* OsIf counter type used in timeout detection for QSPI IP operations  */
-#define QSPI_IP_TIMEOUT_TYPE              (OSIF_COUNTER_DUMMY)
+#define QSPI_IP_TIMEOUT_TYPE              (OSIF_COUNTER_SYSTEM)
 
 /* Delay after changing the value of the QSPI software reset bits */
 #define QSPI_IP_SOFTWARE_RESET_DELAY      (276U)
