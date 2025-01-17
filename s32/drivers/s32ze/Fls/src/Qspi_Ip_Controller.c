@@ -1649,19 +1649,17 @@ static inline void Qspi_Ip_InvalidateTxBuf(uint32 instance)
     QuadSPI_Type *baseAddr = Qspi_Ip_BaseAddress[instance];
     volatile uint32 u32CurrentTicks;
 
-    if (Qspi_Ip_GetTxBufFill(baseAddr) != 0U) {
-        /* Start TX FIFO reset */
-        Qspi_Ip_ClearTxBuf(baseAddr);
+    /* Start TX FIFO reset */
+    Qspi_Ip_ClearTxBuf(baseAddr);
 
-        /* Prepare timeout counter */
-        u32CurrentTicks = QSPI_IP_TX_BUFFER_RESET_DELAY;
-        /* Insert delay to ensure TX FIFO reset is complete */
-        while (u32CurrentTicks > 0U)
-        {
-            u32CurrentTicks--;
-        }
-        MCAL_DATA_SYNC_BARRIER();
+    /* Prepare timeout counter */
+    u32CurrentTicks = QSPI_IP_TX_BUFFER_RESET_DELAY;
+    /* Insert delay to ensure TX FIFO reset is complete */
+    while (u32CurrentTicks > 0U)
+    {
+        u32CurrentTicks--;
     }
+    MCAL_DATA_SYNC_BARRIER();
 }
 
 
