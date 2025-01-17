@@ -53,7 +53,7 @@ extern "C"{
 /*! @brief Size of AHB buffer. */
 #define FEATURE_QSPI_AHB_BUF_SIZE                     256U
 /*! @brief Size of Tx FIFO. */
-#define FEATURE_QSPI_TX_BUF_SIZE                      128U
+#define FEATURE_QSPI_TX_BUF_SIZE                      1024U
 /*! @brief Size of Rx FIFO. */
 #define FEATURE_QSPI_RX_BUF_SIZE                      128U
 /*! @brief Number of LUT registers that make up a LUT sequence */
